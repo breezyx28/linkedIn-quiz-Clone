@@ -17,7 +17,7 @@
 			</div>
 			<div class="border-l border-b border-r border-gray-300">
 				<!-- question -->
-				<div class="pl-4 border-b border-grey-500 bg-white py-3">
+				<div class="pl-4 border-b border-gray-500 bg-white py-3">
 					<h6 class="font-semibold">
 						What of these method is best of sharing a map with colleagues who do not have ArcMap or
 						ArcGIS Pro?
@@ -25,8 +25,8 @@
 				</div>
 				<!-- answers -->
 				<div class="pl-4" style="background-color: #F2F6F9;">
-					<div class="questons flex flex-col divide-y divide-grey-300">
-						<div class="flex align-center py-3">
+					<div class="questons flex flex-col divide-y divide-gray-400">
+						<div class="flex align-center py-4">
 							<div
 								class="relative"
 								style="width:24px;height:24px;border:1px solid gray;border-radius: 50%;"
@@ -38,7 +38,7 @@
 							</div>
 							<span class="pl-2">the answer</span>
 						</div>
-						<div class="flex align-center py-3">
+						<div class="flex align-center py-4">
 							<div
 								class="relative"
 								style="width:24px;height:24px;border:1px solid gray;border-radius: 50%;"
@@ -50,7 +50,7 @@
 							</div>
 							<span class="pl-2">the answer</span>
 						</div>
-						<div class="flex align-center py-3">
+						<div class="flex align-center py-4">
 							<div
 								class="relative"
 								style="width:24px;height:24px;border:1px solid gray;border-radius: 50%;"
@@ -62,7 +62,7 @@
 							</div>
 							<span class="pl-2">the answer</span>
 						</div>
-						<div class="flex align-center py-3">
+						<div class="flex align-center py-4">
 							<div
 								class="relative"
 								style="width:24px;height:24px;border:1px solid gray;border-radius: 50%;"
@@ -77,7 +77,7 @@
 					</div>
 				</div>
 				<!-- feedback -->
-				<div class="feedback pl-4 py-3 border-t border-grey-300" style="background-color: #F2F6F9;">
+				<div class="feedback pl-4 py-3 border-t border-gray-400" style="background-color: #F2F6F9;">
 					<h6>Something wrong with this question? <span class="font-bold">Give feedback</span></h6>
 				</div>
 				<!-- loading progress -->
