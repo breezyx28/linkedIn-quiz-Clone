@@ -1,40 +1,17 @@
 <script>
 	import Answer from '../components/answers/answers.svelte';
 	import db from '../API/stages.json';
-
-	let answers = [
-		{
-			id: 1,
-			text: 'answer 1',
-			selected: false
-		},
-		{
-			id: 2,
-			text: 'answer 2',
-			selected: false
-		},
-		{
-			id: 3,
-			text: 'answer 3',
-			selected: false
-		},
-		{
-			id: 4,
-			text: 'answer 4',
-			selected: false
-		}
-	];
+	import { fade, fly } from 'svelte/transition';
 
 	// next question
 	let current_stage = 0;
-	// time bar
 	let percentage = 0;
 	let count = 1;
+	let viewed = false;
 
 	$: {
 		current_stage;
 		if (percentage === 100) {
-			console.log(percentage);
 			clearInterval(timeCounter);
 		}
 	}
@@ -79,8 +56,8 @@
 	}
 
 	$: {
-		noAnswers, answerClicked;
-		console.log(answerClicked);
+		noAnswers, answerClicked, viewed;
+		console.log(viewed);
 	}
 </script>
 
@@ -106,14 +83,35 @@
 					</h6>
 				</div>
 				<!-- answers -->
-				<div class="pl-4" style="background-color: #F9FAFB;">
-					<div class="questions flex flex-col divide-y divide-gray-300">
-						<!-- answers -->
-						{#each nextQuestion(current_stage)?.answers as answer}
-							<Answer clicked={answerClicked} data={answer} on:selectedAnswer={handleAnswer} />
-						{/each}
+				{#if viewed}
+					<div
+						id="answers-container"
+						class="pl-4"
+						style="background-color: #F9FAFB;"
+						in:fly={{ duration: 400, opacity: 0 }}
+					>
+						<div class="questions flex flex-col divide-y divide-gray-300">
+							<!-- answers -->
+							{#each nextQuestion(current_stage)?.answers as answer}
+								<Answer clicked={answerClicked} data={answer} on:selectedAnswer={handleAnswer} />
+							{/each}
+						</div>
 					</div>
-				</div>
+				{:else}
+					<div
+						id="answers-container"
+						class="pl-4"
+						style="background-color: #F9FAFB;"
+						in:fly={{ duration: 400, opacity: 0 }}
+					>
+						<div class="questions flex flex-col divide-y divide-gray-300">
+							<!-- answers -->
+							{#each nextQuestion(current_stage)?.answers as answer}
+								<Answer clicked={answerClicked} data={answer} on:selectedAnswer={handleAnswer} />
+							{/each}
+						</div>
+					</div>
+				{/if}
 				<!-- feedback -->
 				<div class="feedback pl-4 py-3 border-t border-gray-300" style="background-color: #F9FAFB;">
 					<h6 class="text-sm text-gray-600">
@@ -148,6 +146,7 @@
 								on:click={() => {
 									current_stage = current_stage + 1;
 									answerClicked = null;
+									viewed = !viewed;
 								}}
 							>
 								Next
