@@ -160,7 +160,7 @@
 				<div class="flex justify-between gap-3">
 					<button id="take" class="ln-color rounded-full py-1 px-3 font-semibold">Practice</button>
 					<a
-						href="/"
+						href="/TakeQuiz"
 						id="startBtn"
 						class="rounded-full py-1 px-3 font-semibold text-white cursor-pointer">Start</a
 					>

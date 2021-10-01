@@ -2,6 +2,9 @@
 	import { createEventDispatcher } from 'svelte';
 
 	export let data;
+	export let clicked;
+
+	console.log(data);
 	let pressed = false;
 	const dispatch = createEventDispatcher();
 
@@ -13,13 +16,14 @@
 	}
 
 	$: {
-		data, pressed;
+		data, pressed, clicked;
+		console.log(clicked);
 	}
 </script>
 
 <div class="flex align-center py-4" on:click={choose(data)}>
 	<div class="relative rounded-full border border-gray-500" style="width:24px;height:24px;">
-		<div class="answer-check {data?.selected ? '' : 'hidden'}" />
+		<div class="answer-check {data?.id == clicked ? '' : 'hidden'}" />
 	</div>
 	<span class="pl-2 text-gray-600">{data?.text}</span>
 </div>

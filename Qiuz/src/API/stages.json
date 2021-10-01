@@ -1,9 +1,42 @@
-[
-	{
-		"id": 1,
-		"time": 120,
-		"rightAnswer": "",
-		"question": "",
-		"answers": [{}]
-	}
-]
+{
+	"quizTime": 2000,
+	"quizName": "Cascade Style Sheet Quiz",
+	"details": [
+		{
+			"id": 1,
+			"time": 120,
+			"rightAnswer": 1,
+			"question": "Question 1",
+			"answers": [
+				{ "id": 1, "text": "Q1 Answer A", "selected": false },
+				{ "id": 2, "text": "Q1 Answer B", "selected": false },
+				{ "id": 3, "text": "Q1 Answer C", "selected": false },
+				{ "id": 4, "text": "Q1 Answer D", "selected": false }
+			]
+		},
+		{
+			"id": 2,
+			"time": 120,
+			"rightAnswer": 0,
+			"question": "Question 2",
+			"answers": [
+				{ "id": 1, "text": "Q2 Answer A", "selected": false },
+				{ "id": 2, "text": "Q2 Answer B", "selected": false },
+				{ "id": 3, "text": "Q2 Answer C", "selected": false },
+				{ "id": 4, "text": "Q2 Answer D", "selected": false }
+			]
+		},
+		{
+			"id": 3,
+			"time": 120,
+			"rightAnswer": 3,
+			"question": "Question 3",
+			"answers": [
+				{ "id": 1, "text": "Q3 Answer A", "selected": false },
+				{ "id": 2, "text": "Q3 Answer B", "selected": false },
+				{ "id": 3, "text": "Q3 Answer C", "selected": false },
+				{ "id": 4, "text": "Q3 Answer D", "selected": false }
+			]
+		}
+	]
+}
