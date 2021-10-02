@@ -4,7 +4,7 @@
 	"details": [
 		{
 			"id": 1,
-			"time": 120,
+			"time": 70,
 			"rightAnswer": 1,
 			"question": "Question 1",
 			"answers": [
@@ -16,7 +16,7 @@
 		},
 		{
 			"id": 2,
-			"time": 120,
+			"time": 90,
 			"rightAnswer": 0,
 			"question": "Question 2",
 			"answers": [
@@ -40,7 +40,7 @@
 		},
 		{
 			"id": 4,
-			"time": 120,
+			"time": 145,
 			"rightAnswer": 2,
 			"question": "Question 4",
 			"answers": [

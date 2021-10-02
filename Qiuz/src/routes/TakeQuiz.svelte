@@ -1,42 +1,36 @@
 <script>
 	import Answer from '../components/answers/answers.svelte';
 	import db from '../API/stages.json';
-	import { fade, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 
-	// next question
-	let current_stage = 0;
-	let percentage = 0;
-	let count = 1;
-	let viewed = false;
+	let current_stage = 0,
+		percentage = 0,
+		count = 1,
+		viewed = false,
+		noAnswers = true,
+		answerClicked = null,
+		current_time,
+		done = false;
 
 	$: {
-		current_stage;
+		current_stage, current_time, done;
 		if (percentage === 100) {
 			clearInterval(timeCounter);
 		}
 	}
 
+	// event to next question
 	let nextQuestion = (index) => {
 		return db.details[index];
 	};
 
-	$: {
-		if (current_stage) {
-			nextQuestion(current_stage);
-		}
-	}
-
+	// calc pecentage of progress
 	let timeCounter = setInterval(() => {
-		// calc pecentage of progress
 		count = count + 1;
 		percentage = (count / db.quizTime) * 100;
 	}, 100);
 
-	console.log(db);
-
-	let noAnswers = true;
-	let answerClicked = null;
-
+	// handle answer
 	function handleAnswer(e) {
 		noAnswers = false;
 		let index = nextQuestion(current_stage).answers.findIndex((item) => item.id == e.detail.select);
@@ -50,15 +44,50 @@
 		);
 
 		answerClicked = nextQuestion(current_stage).answers[index].id;
-
 		nextQuestion(current_stage).answers[index].selected =
 			!nextQuestion(current_stage).answers[index].selected;
 	}
 
+	let counter = {
+		minutes: 0,
+		secondes: 0
+	};
+
+	// countdown
+	let countdown = () => {
+		let minutes = Math.floor(current_time / 60);
+		let secondes = current_time % 60;
+
+		current_time = nextQuestion(current_stage)?.time;
+		console.log(current_time);
+
+		let intCountdown = setInterval(() => {
+			// decreament by 1
+			current_time = current_time - 1;
+
+			// count down for minutes every 60 sec
+			minutes = Math.floor(current_time / 60);
+			secondes = current_time % 60;
+
+			counter.minutes = minutes < 10 ? '0' + minutes : minutes;
+			counter.secondes = secondes < 10 ? '0' + secondes : secondes;
+
+			if (current_time == 0) {
+				current_stage += 1;
+				done = true;
+				clearInterval(intCountdown);
+				viewed = !viewed;
+				noAnswers = true;
+				countdown();
+			}
+		}, 1000);
+	};
+
 	$: {
-		noAnswers, answerClicked, viewed;
-		console.log(viewed);
+		noAnswers, answerClicked, viewed, done;
 	}
+
+	countdown(nextQuestion(current_stage)?.time);
 </script>
 
 <div class="w-screen h-screen">
@@ -88,7 +117,7 @@
 						id="answers-container"
 						class="pl-4"
 						style="background-color: #F9FAFB;"
-						in:fly={{ duration: 400, opacity: 0 }}
+						in:fly={{ duration: 750, opacity: 0 }}
 					>
 						<div class="questions flex flex-col divide-y divide-gray-300">
 							<!-- answers -->
@@ -102,7 +131,7 @@
 						id="answers-container"
 						class="pl-4"
 						style="background-color: #F9FAFB;"
-						in:fly={{ duration: 400, opacity: 0 }}
+						in:fly={{ duration: 750, opacity: 0 }}
 					>
 						<div class="questions flex flex-col divide-y divide-gray-300">
 							<!-- answers -->
@@ -134,7 +163,7 @@
 					<div class="holder flex justify-between items-center">
 						<div class="time text-gray-600">
 							<span>Q {current_stage + 1}/{db.details.length}</span>
-							<span class="pl-4">01:10</span>
+							<span class="pl-4">{counter.minutes}:{counter.secondes}</span>
 						</div>
 						<div class="button">
 							<button
@@ -147,6 +176,7 @@
 									current_stage = current_stage + 1;
 									answerClicked = null;
 									viewed = !viewed;
+									noAnswers = true;
 								}}
 							>
 								Next
