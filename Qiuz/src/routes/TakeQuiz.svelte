@@ -10,10 +10,11 @@
 		noAnswers = true,
 		answerClicked = null,
 		current_time,
-		done = false;
+		done = false,
+		additionTime = 0;
 
 	$: {
-		current_stage, current_time, done;
+		current_stage, current_time, done, additionTime;
 		if (percentage === 100) {
 			clearInterval(timeCounter);
 		}
@@ -21,6 +22,10 @@
 
 	// event to next question
 	let nextQuestion = (index) => {
+		// add time to progress
+		if (index != 0) {
+			additionTime = db.details[index].time;
+		}
 		return db.details[index];
 	};
 
