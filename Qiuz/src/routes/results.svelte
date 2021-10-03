@@ -67,7 +67,7 @@
 				<div class="h-2" style="background-color: #F3F2EF;" />
 
 				<!-- setting section -->
-				<div class="bg-white">
+				<div class="bg-white py-4">
 					<div class="flex justify-center py-4">
 						<div class="w-10/12">
 							<div class="flex justify-between">
@@ -148,31 +148,21 @@
 						</div>
 					</div>
 				</div>
-				<!-- loading progress -->
-				<div class="w-full h-3">
-					<div class="relative">
-						<div class="overflow-hidden h-3 text-xs flex bg-gray-300">
-							<div
-								style="width:23%;background-color:#56687A;"
-								class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center"
-							/>
-						</div>
-					</div>
-				</div>
-				<!-- next question -->
+
+				<!-- divider -->
+				<div class="h-2" style="background-color: #F3F2EF;" />
+
+				<!-- Done -->
 				<div class="next rounded-b-lg bg-white px-4 py-3">
 					<div class="holder flex justify-between items-center">
-						<div class="time text-gray-600">
-							<span>Q 2/8</span>
-							<span class="pl-4">01:40</span>
-						</div>
+						<div class="" />
 						<div class="button">
 							<button
 								class="rounded-full py-1 px-4"
 								type="button"
 								style="background-color: #0075AF;color:white;cursor:pointer;transition:0.4s"
 							>
-								Next
+								Done
 							</button>
 						</div>
 					</div>
