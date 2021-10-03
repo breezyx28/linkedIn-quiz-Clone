@@ -5,7 +5,6 @@
 
 	let current_stage = 0,
 		percentage = 0,
-		count = 1,
 		viewed = false,
 		noAnswers = true,
 		answerClicked = null,
@@ -16,10 +15,6 @@
 
 	$: {
 		current_stage, current_time, done, additionTime;
-		if (percentage === 100) {
-			// navigate to results page
-			window.location.href = '/results';
-		}
 	}
 
 	// event to next question
@@ -30,7 +25,7 @@
 
 	// calc pecentage of progress
 	let progressCounter = () => {
-		percentage = ((current_stage + 1) / totalQuestions) * 100;
+		percentage = (current_stage / totalQuestions) * 100;
 	};
 
 	progressCounter();
@@ -64,7 +59,6 @@
 		let secondes = current_time % 60;
 
 		current_time = nextQuestion(current_stage)?.time;
-		console.log(current_time);
 
 		let intCountdown = setInterval(() => {
 			// decreament by 1
@@ -178,6 +172,10 @@
 									? '#56687A'
 									: 'white'};cursor:{noAnswers ? 'default' : 'pointer'};transition:0.4s"
 								on:click={() => {
+									if (current_stage + 1 >= totalQuestions) {
+										// navigate to results page
+										window.location.href = '/results';
+									}
 									current_stage = current_stage + 1;
 									answerClicked = null;
 									viewed = !viewed;

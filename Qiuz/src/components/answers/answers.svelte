@@ -4,7 +4,6 @@
 	export let data;
 	export let clicked;
 
-	console.log(data);
 	let pressed = false;
 	const dispatch = createEventDispatcher();
 
@@ -17,7 +16,6 @@
 
 	$: {
 		data, pressed, clicked;
-		console.log(clicked);
 	}
 </script>
 
