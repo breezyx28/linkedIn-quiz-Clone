@@ -11,29 +11,29 @@
 		answerClicked = null,
 		current_time,
 		done = false,
-		additionTime = 0;
+		additionTime = 0,
+		totalQuestions = db.details.length;
 
 	$: {
 		current_stage, current_time, done, additionTime;
 		if (percentage === 100) {
-			clearInterval(timeCounter);
+			// navigate to results page
+			window.location.href = '/results';
 		}
 	}
 
 	// event to next question
 	let nextQuestion = (index) => {
-		// add time to progress
-		if (index != 0) {
-			additionTime = db.details[index].time;
-		}
+		progressCounter();
 		return db.details[index];
 	};
 
 	// calc pecentage of progress
-	let timeCounter = setInterval(() => {
-		count = count + 1;
-		percentage = (count / db.quizTime) * 100;
-	}, 100);
+	let progressCounter = () => {
+		percentage = ((current_stage + 1) / totalQuestions) * 100;
+	};
+
+	progressCounter();
 
 	// handle answer
 	function handleAnswer(e) {
